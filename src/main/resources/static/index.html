@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Employee Management System</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header class="header">
+        <div>
+            <h1>Employee Management System</h1>
+            <p>Manage your employees easily</p>
+        </div>
+    </header>
+
+    <div class="employee-count-card">
+        <span>Total Employees</span>
+        <strong id="employeeCount">0</strong>
+    </div>
+
+    <div class="section-title">
+        <h2>Add Employee</h2>
+        <p>Enter employee details below</p>
+    </div>
+
+    <form id="employeeForm">
+
+        <input type="text" id="name" placeholder="Name" required>
+
+        <input type="email" id="email" placeholder="Email" required>
+
+        <input
+            type="tel"
+            id="phone"
+            placeholder="Phone"
+            maxlength="10"
+            required
+        >
+
+        <input
+            type="text"
+            id="department"
+            placeholder="Department"
+            required
+        >
+
+        <input
+            type="number"
+            id="salary"
+            placeholder="Salary"
+            min="1"
+            required
+        >
+
+        <button type="submit" id="submitButton">
+            Add Employee
+        </button>
+
+        <button type="button" class="cancel-button" onclick="cancelEdit()">
+            Cancel Edit
+        </button>
+
+    </form>
+
+    <button type="button" id="loadButton" onclick="loadEmployees()">
+    Load Employees
+</button>
+
+    <div class="search-section">
+
+        <input
+            type="text"
+            id="searchInput"
+            placeholder="🔍 Search employee by name"
+        >
+
+        <button type="button" onclick="clearSearch()">
+            Clear
+        </button>
+
+        <select id="departmentFilter">
+            <option value="">All Departments</option>
+        </select>
+
+    </div>
+
+    <div class="employee-list-section">
+
+    <div class="employee-list-title">
+        <h2>Employee List</h2>
+        <p>View and manage all employees</p>
+    </div>
+
+    <div id="employeeList"></div>
+
+</div>
+
+    <script src="script.js" defer></script>
+
+</body>
+
+</html>
