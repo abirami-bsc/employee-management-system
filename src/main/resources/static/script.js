@@ -272,5 +272,85 @@ function clearSearch() {
 
     document.getElementById("departmentFilter").value = "";
 
-    filterEmployees();
+    document.getElementById("sortEmployees").value = "";
+
+    loadEmployees();
+}
+document.getElementById("sortEmployees").addEventListener("change", sortEmployees);
+
+function sortEmployees() {
+
+    const sortValue =
+        document.getElementById("sortEmployees").value;
+
+    const employeeList =
+        document.getElementById("employeeList");
+
+    const employees =
+        Array.from(employeeList.querySelectorAll("div[data-department]"));
+
+    employees.sort((a, b) => {
+
+        if (sortValue === "name") {
+
+            const nameA =
+                a.querySelector("h3").textContent.toLowerCase();
+
+            const nameB =
+                b.querySelector("h3").textContent.toLowerCase();
+
+            return nameA.localeCompare(nameB);
+        }
+
+        if (sortValue === "salaryLow") {
+
+            const salaryA =
+                parseFloat(
+                    a.querySelector("p:nth-of-type(4)")
+                     .textContent.replace("Salary: ₹", "")
+                );
+
+            const salaryB =
+                parseFloat(
+                    b.querySelector("p:nth-of-type(4)")
+                     .textContent.replace("Salary: ₹", "")
+                );
+
+            return salaryA - salaryB;
+        }
+
+        if (sortValue === "salaryHigh") {
+
+            const salaryA =
+                parseFloat(
+                    a.querySelector("p:nth-of-type(4)")
+                     .textContent.replace("Salary: ₹", "")
+                );
+
+            const salaryB =
+                parseFloat(
+                    b.querySelector("p:nth-of-type(4)")
+                     .textContent.replace("Salary: ₹", "")
+                );
+
+            return salaryB - salaryA;
+        }
+
+        if (sortValue === "department") {
+
+            const departmentA =
+                a.dataset.department.toLowerCase();
+
+            const departmentB =
+                b.dataset.department.toLowerCase();
+
+            return departmentA.localeCompare(departmentB);
+        }
+
+        return 0;
+    });
+
+    employees.forEach(employee => {
+        employeeList.appendChild(employee);
+    });
 }
